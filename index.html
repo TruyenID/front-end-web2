@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- index.php !-->
+<html>
+
+<head>
+    <title>UI Monk - Angular JS Tutotials</title>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <!-- angular cdn -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- my stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="containers">
+        <h3>QUAN LY SINH VIEN</h3>
+        <h4 style="text-align: center;color: orange;">Nhom 6 - Front End Web 2 </h4>
+        <div ng-app='myApp' ng-controller='myController' ng-init='loadTable()' >
+            <div ng-hide="isLogin">
+                <div>
+                    <div  >
+                        <div >
+                            <label>Name</label>
+                            <input type="hidden" ng-model='id'>
+                            <input type="text" ng-model='name' class='form-control' autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Phone</label>
+                            <input type="text" ng-model='phone' class='form-control' autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Status</label>
+                            <select class="form-control" ng-model='status'>
+                                <option value='Still learning'>Still learning</option>
+                                <option value='Missed school'>Missed school</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Mssv</label>
+                            <input type="text" ng-model='mssv' class='form-control' autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Address</label>
+                            <input type="text" ng-model='address' class='form-control' autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Majors</label>
+                            <select class="form-control" ng-model='majors'>
+                                <option value='Information technology'>Information technology</option>
+                                <option value='Graphic design'>Graphic design</option>
+                                <option value='Computer network'>Computer network</option>
+                            </select>
+                        </div>
+                        <div class='buttn'>
+                            <input type="submit" value={{btname}} class='btn btn-success' ng-click='insertIntoDB()'>
+                        </div>
+                    </div>
+                </div>
+                <h3>Student information</h3>
+
+                <div class='tableHolder'>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>MSSV</th>
+                            <th>address</th>
+                            <th>majors</th>
+                            <th>Action</th>
+                        </tr>
+
+                        <tr ng-repeat='x in JSONValues track by $index'>
+                            <th>{{x.name}}</th>
+                            <th>{{x.phone}}</th>
+                            <th>{{x.status}}</th>
+                            <th>{{x.mssv}}</th>
+                            <th>{{x.address}}</th>
+                            <th>{{x.majors}}</th>
+                            <th>
+                                <button class='btn btn-primary'
+                                    ng-click='updateDB(x.id,x.name,x.phone,x.status,x.mssv,x.address,x.majors)'>Update</button>
+                                <button class='btn btn-danger' ng-click='deleteDB(x.id)'>Delete</button>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container ends -->
+    </div>
+    <!-- my script -->
+    <script src='script.js'></script>
+</body>
+
+</html>
